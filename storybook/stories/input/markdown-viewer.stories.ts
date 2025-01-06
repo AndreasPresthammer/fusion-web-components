@@ -1,5 +1,5 @@
 import { html } from 'lit';
-
+import { ifDefined } from 'lit/directives/if-defined.js';
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { setCustomElementsManifest } from '@storybook/web-components';
 
@@ -20,13 +20,18 @@ const meta: Meta<typeof cem> = {
   component: 'fwc-markdown-viewer',
 };
 
-const render = (_props: MarkdownViewerElementProps) => html`
-  <fwc-markdown-viewer>${markdownExample}</fwc-markdown-viewer>
+const render = (props: MarkdownViewerElementProps) => html`
+  <fwc-markdown-viewer excludeFeatures="${ifDefined(props.excludeFeatures)}">${markdownExample}</fwc-markdown-viewer>
 `;
 
 export const Default: Story = {
   args: {},
   render,
+};
+
+export const ExcludeFeatures: Story = {
+  args: {},
+  render: (props) => render({ ...props, excludeFeatures: ['image', 'link'] }),
 };
 
 export default meta;
