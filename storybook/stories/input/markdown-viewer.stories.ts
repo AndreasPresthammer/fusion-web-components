@@ -3,10 +3,7 @@ import { ifDefined } from 'lit/directives/if-defined.js';
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { setCustomElementsManifest } from '@storybook/web-components';
 
-import {
-  MarkdownViewerElement,
-  MarkdownViewerElementProps,
-} from '@equinor/fusion-wc-markdown';
+import { MarkdownViewerElement, MarkdownViewerElementProps } from '@equinor/fusion-wc-markdown';
 import cem from '@equinor/fusion-wc-markdown/custom-elements.json';
 import markdownExample from './markdown.example.md?raw';
 
@@ -29,7 +26,17 @@ export const Default: Story = {
   render,
 };
 
-export const ExcludeFeatures: Story = {
+export const ExcludeImages: Story = {
+  args: {},
+  render: (props) => render({ ...props, excludeFeatures: ['image'] }),
+};
+
+export const ExcludeLinks: Story = {
+  args: {},
+  render: (props) => render({ ...props, excludeFeatures: ['link'] }),
+};
+
+export const ExcludeImagesAndLinks: Story = {
   args: {},
   render: (props) => render({ ...props, excludeFeatures: ['image', 'link'] }),
 };
